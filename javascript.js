@@ -26,6 +26,11 @@ const når du definerer variablene.
 
 // Skriv koden for oppgave 2 her
 
+let myString = "Hello, world!";
+const myNumber = 42;
+let myBoolean = true;
+const myArray = [123, true, "god jul"];
+
 /******************************************************************************
 OPPGAVE 3
 
@@ -37,6 +42,21 @@ Skriv noen eksempler der du tester disse operatorene.
 ******************************************************************************/
 
 // Skriv koden for oppgave 3 her
+
+console.log(myNumber); // <-- 42
+console.log(myNumber + 10); // <-- 42 + 10 = 52
+console.log(myArray[0] * 2); // <-- 123 * 2 = 246
+
+let myNewNumber = myNumber;
+myNewNumber += 8; 
+console.log(myNewNumber); // <-- 50
+
+console.log(myNewNumber < 40); // <-- false
+console.log(myNewNumber != 80); // <-- true
+
+myNewNumber++;
+console.log(myNewNumber); // <-- 51
+
 
 /******************************************************************************
 OPPGAVE 4
@@ -66,6 +86,16 @@ let userIsBlocked = false;
 let goToPage = "";
 
 // Skriv koden for oppgave 4 her
+
+if (userName !== "" && userAge >= 18 && !userIsBlocked) {
+    userIsLoggedIn = true;
+    goToPage = "/home";
+}
+else {
+    if (userName == "") {console.log("Please enter a username!")}
+    if (userAge < 18) {console.log("You must be over 18 years old!")}
+    if (userIsBlocked) {console.log("You are blocked from this site!")}
+}
 
 /******************************************************************************
 OPPGAVE 5
