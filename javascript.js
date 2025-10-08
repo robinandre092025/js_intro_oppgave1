@@ -26,14 +26,23 @@ const når du definerer variablene.
 
 // Skriv koden for oppgave 2 her
 
+console.log("--- DECLARATION ---");
+
 let myString = "Hello, world!";
+console.log(`DECLARE string myString: ${myString}`);
+
 const myNumber = 42;
+console.log(`DECLARE num myNumber: ${myNumber}`);
+
 let myBoolean = true;
+console.log(`DECLARE bool myBoolean: ${myBoolean}`);
+
 const myArray = [123, true, "god jul"];
+console.log(`DECLARE array myArray: ${myArray}`);
 
 /******************************************************************************
-OPPGAVE 3
-
+ OPPGAVE 3
+ 
 Prøv ut noen av operatorene vi så på i forrige forelesning:
 - Matematiske operatorer: +, -, /, *
 - Forkortede operatorer: ++, --, +=, -=
@@ -43,20 +52,34 @@ Skriv noen eksempler der du tester disse operatorene.
 
 // Skriv koden for oppgave 3 her
 
-console.log(myNumber); // <-- 42
-console.log(myNumber + 10); // <-- 42 + 10 = 52
-console.log(myArray[0] * 2); // <-- 123 * 2 = 246
+console.log("--- OPERATORS ---");
+
+console.log(`LOG myNumber -> ${myNumber}`); // <-- 42
+console.log(`LOG myNumber + 10 -> ${myNumber + 10}`); // <-- 42 + 10 = 52
+console.log(`LOG index 0 in myArray * 2 -> ${myArray[0] * 2}`); // <-- 123 * 2 = 246
 
 let myNewNumber = myNumber;
-myNewNumber += 8; 
-console.log(myNewNumber); // <-- 50
+console.log(`DECLARE num myNewNumber -> myNumber`);
 
-console.log(myNewNumber < 40); // <-- false
-console.log(myNewNumber != 80); // <-- true
+myNewNumber += 8; // do operation outside of log to actually apply to the variable
+console.log(
+  `MATH plus-equals mathematical operator: myNewNumber += 8 -> ${myNewNumber}`
+);
 
-myNewNumber++;
-console.log(myNewNumber); // <-- 51
+console.log(
+  `COMPARE less than comperative operator: myNewNumber < 40 -> ${
+    myNewNumber < 40
+  }`
+);
 
+console.log(
+  `COMPARE not equal to comperative operator: myNewNumber != 80 -> ${
+    myNewNumber != 80
+  }`
+);
+
+myNewNumber++; // do operation outside of log to actually apply to the variable
+console.log(`MATH increment operator: myNewNumber++ -> ${myNewNumber}`);
 
 /******************************************************************************
 OPPGAVE 4
@@ -66,7 +89,7 @@ Skriv en IF/ELSE-betingelse som sjekker følgende:
 2. At userAge er 18 eller eldre.
 3. At userIsBlocked er false.
 
-(TIPS: Bruk && (logisk OG) for å sjekke alle tre betingelsene i én IF-setning.)
+(TIPS: Bruk && (logisk OG) for å sjekke alle tre betingelsene i én IF-  ning.)
 
 - Hvis alle disse betingelsene er oppfylt, skal du sette variabelen
 userIsLoggedIn til true og goToPage til "/home". Deretter skriver du ut en 
@@ -79,23 +102,62 @@ Prøv å endre verdiene på variablene for å sikre at IF/ELSE-setningen din
 håndterer alle tilfeller korrekt.
 ******************************************************************************/
 
-let userName = "";
-let userAge = 18;
-let userIsLoggedIn = false;
-let userIsBlocked = false;
-let goToPage = "";
-
 // Skriv koden for oppgave 4 her
 
-if (userName !== "" && userAge >= 18 && !userIsBlocked) {
-    userIsLoggedIn = true;
-    goToPage = "/home";
+console.log("--- LOGIC: IF/ELSE ---");
+
+// create 3 users in objects to avoid variable clutter
+let userUnnamed = {
+  name: "",
+  age: 25,
+  isLoggedIn: false,
+  isBlocked: false,
+  goToPage: null,
+};
+
+let userBlocked = {
+  name: "Blake",
+  age: 18,
+  isLoggedIn: false,
+  isBlocked: true,
+  goToPage: null,
+};
+
+let userValid = {
+  name: "Michael",
+  age: 32,
+  isLoggedIn: false,
+  isBlocked: false,
+  goToPage: null,
+};
+
+// function to check eligibility for log in, then log in
+function logIn(user) {
+  if (user.name !== "" && user.age >= 18 && !user.isBlocked) {
+    user.isLoggedIn = true;
+    user.goToPage = "/home";
+    console.log(`Successfully logged in as: ${user.name}`);
+  } else {
+    if (user.name == "") {
+      console.log("Log in failed: Please enter a username!");
+    }
+    if (user.age < 18) {
+      console.log("Log in failed: You must be over 18 years old!");
+    }
+    if (user.isBlocked) {
+      console.log("Log in failed: You are blocked from this site!");
+    }
+  }
 }
-else {
-    if (userName == "") {console.log("Please enter a username!")}
-    if (userAge < 18) {console.log("You must be over 18 years old!")}
-    if (userIsBlocked) {console.log("You are blocked from this site!")}
-}
+
+console.log(`Attempt to log in with "userUnnamed":`);
+logIn(userUnnamed);
+
+console.log(`Attempt to log in with "userBlocked":`);
+logIn(userBlocked);
+
+console.log(`Attempt to log in with "userValid":`);
+logIn(userValid);
 
 /******************************************************************************
 OPPGAVE 5
@@ -112,6 +174,14 @@ Prøv å endre userMale til både true og false og bruk console.log for å sjekk
 at betingelsen din fungerer som den skal.
 ******************************************************************************/
 
-const userMale = false;
-
 // Skriv koden for oppgave 5 her
+
+console.log("--- TERNARY CONDITIONAL ---");
+
+const userMale = false;
+console.log(`DECLARE const bool userMale: ${userMale}`);
+
+const userTitle = userMale ? "Mr. " : "Mrs. ";
+console.log(`DECLARE ternary string userTitle: userName ? "Mr. " : "Mrs. "`);
+
+console.log(`LOG userTitle -> ${userTitle}`);
