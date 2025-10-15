@@ -1,187 +1,306 @@
 /******************************************************************************
-OPPGAVE 1
+Funksjoner og metoder oppgave
 
-Din første oppgave er å koble denne JavaScript-filen til index.html-filen
-ved å bruke en av metodene vi viste i første forelesning.
+Les oppgaveteksten NØYE. Vis noen eksempler i koden din som tester
+funksjonene og metodene dine. Bruk en variasjon av pilfunksjoner (arrow functions)
+og funksjoner laget med nøkkelordet `function`.
 
-<-- Finn index.html-filen i filutforskeren og koble den til denne filen,
-javascript.js
+Legg til kommentarer i koden din som kort forklarer hva den gjør.
 ******************************************************************************/
-
-// Løs denne oppgaven i index.html
 
 /******************************************************************************
-OPPGAVE 2
+1.
+Lag følgende funksjon:
 
-I forrige undervisning lærte vi hvordan man lager variabler som kan holde ulike
-typer verdier. Lag noen variabler med følgende datatyper:
-- String (tekst)
-- Number (tall)
-- Boolean (sann/usann)
-- Array (liste)
-
-Du kan velge hva innholdet i variablene skal være. Prøv å bruke både let og 
-const når du definerer variablene.
+Funksjonen skal ta inn et tall som parameter og returnere
+"Oddetall" hvis tallet er et oddetall og "Partall" hvis tallet er et partall.
+(PS: Funksjonen skal bruke return, du skal ikke bruke console log inni
+funksjonen)
 ******************************************************************************/
 
-// Skriv koden for oppgave 2 her
+console.log("--- ODD / EVEN ---");
 
-console.log("--- DECLARATION ---");
+let oddNum = 517;
+let evenNum = 48;
+console.log(`DECLARE num oddNum:\n`, oddNum);
+console.log(`DECLARE num evenNum:\n`, evenNum);
 
-let myString = "Hello, world!";
-console.log(`DECLARE string myString: ${myString}`);
+// running the checks here to demonstrate hoisting
+console.log(`RUN checkOdd(oddNum):\n`, checkOdd(oddNum));
+console.log(`RUN checkOdd(evenNum):\n`, checkOdd(evenNum));
 
-const myNumber = 42;
-console.log(`DECLARE num myNumber: ${myNumber}`);
+function checkOdd(num) {
+  // if (!Number(num)) {
+  //   return console.log(`ERROR "${num}" is not a valid number.`);
+  // }
 
-let myBoolean = true;
-console.log(`DECLARE bool myBoolean: ${myBoolean}`);
-
-const myArray = [123, true, "god jul"];
-console.log(`DECLARE array myArray: ${myArray}`);
+  return num % 2 === 1;
+}
 
 /******************************************************************************
- OPPGAVE 3
- 
-Prøv ut noen av operatorene vi så på i forrige forelesning:
-- Matematiske operatorer: +, -, /, *
-- Forkortede operatorer: ++, --, +=, -=
+2.
+Lag følgende funksjon:
 
-Skriv noen eksempler der du tester disse operatorene.
+Funksjonen skal ta inn en string som parameter og returnere stringen
+i STORE BOKSTAVER med et utropstegn på slutten.
+
+Eksempel: "Dette er kult" skal returnere "DETTE ER KULT!"
 ******************************************************************************/
 
-// Skriv koden for oppgave 3 her
+console.log("--- STRING MANIPULATION ---");
 
-console.log("--- OPERATORS ---");
+let kulStr = "Dette er kult";
+console.log(`DECLARE str kulStr:\n`, kulStr);
 
-console.log(`LOG myNumber -> ${myNumber}`); // <-- 42
-console.log(`LOG myNumber + 10 -> ${myNumber + 10}`); // <-- 42 + 10 = 52
-console.log(`LOG index 0 in myArray * 2 -> ${myArray[0] * 2}`); // <-- 123 * 2 = 246
+// arrow function, note {} and return are omitted for single expression
+const makeExcited = (str) => str.toUpperCase() + "!";
 
-let myNewNumber = myNumber;
-console.log(`DECLARE num myNewNumber -> myNumber`);
-
-myNewNumber += 8; // do operation outside of log to actually apply to the variable
-console.log(
-  `MATH plus-equals mathematical operator: myNewNumber += 8 -> ${myNewNumber}`
-);
-
-console.log(
-  `COMPARE less than comperative operator: myNewNumber < 40 -> ${
-    myNewNumber < 40
-  }`
-);
-
-console.log(
-  `COMPARE not equal to comperative operator: myNewNumber != 80 -> ${
-    myNewNumber != 80
-  }`
-);
-
-myNewNumber++; // do operation outside of log to actually apply to the variable
-console.log(`MATH increment operator: myNewNumber++ -> ${myNewNumber}`);
+// running the check here because arrow functions do not hoist
+console.log(`RUN makeExcited(kulStr):\n`, makeExcited(kulStr));
 
 /******************************************************************************
-OPPGAVE 4
+3.Lag følgende funksjon:
 
-Skriv en IF/ELSE-betingelse som sjekker følgende:
-1. At userName ikke er tom ("").
-2. At userAge er 18 eller eldre.
-3. At userIsBlocked er false.
+Funksjonen skal ta inn 2 parametere:
 
-(TIPS: Bruk && (logisk OG) for å sjekke alle tre betingelsene i én IF-  ning.)
+ - Et navn (string)
+ - En time på døgnet (nummer)
 
-- Hvis alle disse betingelsene er oppfylt, skal du sette variabelen
-userIsLoggedIn til true og goToPage til "/home". Deretter skriver du ut en 
-velkomstmelding med console.log.
+Funksjonen skal returnere:
+"Ugyldig tid" hvis timeverdien er mindre enn 0.
+"God natt (mottatt navn)" hvis timeverdien er mellom 0 og 5.
+"God morgen (mottatt navn)" hvis timeverdien er mellom 6 og 11.
+"God dag (mottatt navn)" hvis timeverdien er mellom 12 og 17.
+"God kveld (mottatt navn)" hvis timeverdien er mellom 18 og 23.
+"Ugyldig tid" hvis timeverdien er større enn 23.
 
-- Hvis noen av betingelsene IKKE er oppfylt, skal du skrive ut en feilmelding
-med console.log.
-
-Prøv å endre verdiene på variablene for å sikre at IF/ELSE-setningen din 
-håndterer alle tilfeller korrekt.
+Hvis ingen timeverdi mottas, skal funksjonen returnere en feilmelding.
 ******************************************************************************/
 
-// Skriv koden for oppgave 4 her
+console.log(`--- GREETER ---`);
 
-console.log("--- LOGIC: IF/ELSE ---");
+let userName = "Steve";
+let randomTime = Math.floor(Math.random() * 24); // randomly generate a number between 0 and 24
 
-// create 3 users in objects to avoid variable clutter
-let userUnnamed = {
-  name: "",
-  age: 25,
-  isLoggedIn: false,
-  isBlocked: false,
-  goToPage: null,
-};
+console.log(`DECLARE str name:\n`, userName);
+console.log(`DECLARE num randomTime:\n`, randomTime);
 
-let userBlocked = {
-  name: "Blake",
-  age: 18,
-  isLoggedIn: false,
-  isBlocked: true,
-  goToPage: null,
-};
+console.log(`RUN greet(userName, randomTime):\n`, greet(userName, randomTime));
 
-let userValid = {
-  name: "Michael",
-  age: 32,
-  isLoggedIn: false,
-  isBlocked: false,
-  goToPage: null,
-};
+function greet(name, time) {
+  // if (!name) {
+  //   console.log(`ERROR greet():\nValid name is required!`);
+  // }
 
-// function to check eligibility for log in, then log in
-function logIn(user) {
-  if (user.name !== "" && user.age >= 18 && !user.isBlocked) {
-    user.isLoggedIn = true;
-    user.goToPage = "/home";
-    console.log(`Successfully logged in as: ${user.name}`);
+  if (time < 0 || time > 24) {
+    return "Invalid time!";
   } else {
-    if (user.name == "") {
-      console.log("Log in failed: Please enter a username!");
+    if (time >= 0 && time <= 5) {
+      return `Good night, ${name}!`;
     }
-    if (user.age < 18) {
-      console.log("Log in failed: You must be over 18 years old!");
+    if (time >= 6 && time <= 11) {
+      return `Good morning, ${name}!`;
     }
-    if (user.isBlocked) {
-      console.log("Log in failed: You are blocked from this site!");
+    if (time >= 12 && time <= 17) {
+      return `Good afternoon, ${name}!`;
+    }
+    if (time >= 18 && time <= 23) {
+      return `Good evening, ${name}!`;
     }
   }
 }
 
-console.log(`Attempt to log in with "userUnnamed":`);
-logIn(userUnnamed);
-
-console.log(`Attempt to log in with "userBlocked":`);
-logIn(userBlocked);
-
-console.log(`Attempt to log in with "userValid":`);
-logIn(userValid);
-
 /******************************************************************************
-OPPGAVE 5
+4.Lag følgende funksjon:
 
-Lag en variabel kalt userTitle og sett innholdet til å være:
-- "Mr." hvis userMale er true, eller
-- "Mrs." hvis userMale er false.
+Funksjonen skal ta inn en array som parameter og returnere arrayen
+med første og siste indeks fjernet.
 
-Bruk en ternary conditional for dette:
+Eksempel 1: ["Rød", "Grønn", "Blå", "Gul"] skal returnere ["Grønn", "Blå"].
 
-const variabel = betingelse ? "hvis sann" : "hvis usann";
-
-Prøv å endre userMale til både true og false og bruk console.log for å sjekke
-at betingelsen din fungerer som den skal.
+Eksempel 2: ["En", "To", "Tre", "Fire", "Fem", "Seks"] skal returnere
+["To", "Tre", "Fire", "Fem"].
 ******************************************************************************/
 
-// Skriv koden for oppgave 5 her
+console.log(`--- ARRAY MANIPULATION ---`);
 
-console.log("--- TERNARY CONDITIONAL ---");
+let colors = ["Red", "Green", "Blue", "Yellow"];
+let numbers = ["One", "Two", "Three", "Four", "Five", "Six"];
 
-const userMale = false;
-console.log(`DECLARE const bool userMale: ${userMale}`);
+console.log(`DECLARE arr colors:\n`, colors);
+console.log(`DECLARE arr numbers:\n`, numbers);
 
-const userTitle = userMale ? "Mr. " : "Mrs. ";
-console.log(`DECLARE ternary string userTitle: userName ? "Mr. " : "Mrs. "`);
+const trimArray = (arr) => arr.slice(1, -1);
 
-console.log(`LOG userTitle -> ${userTitle}`);
+console.log(`RUN trimArray(colors):\n`, trimArray(colors));
+console.log(`RUN trimArray(numbers):\n`, trimArray(numbers));
+
+/******************************************************************************
+5.Lag følgende funksjon:
+
+Funksjonen skal ta inn en string som parameter.
+
+Bruk stringmetoder på stringen for å gjøre følgende:
+ - Erstatt ordet "vanskelig" med "gøy".
+ - Fjern mellomrom fra starten og slutten av stringen.
+
+Returner deretter den oppdaterte stringen.
+
+Eksempel 1: "  Javascript er vanskelig   " skal returnere "Javascript er gøy".
+Eksempel 2: " Det er vanskelig å bruke metoder " skal returnere "Det er gøy å bruke metoder".
+Eksempel 3: "   vanskelig        " skal returnere "gøy".
+******************************************************************************/
+
+console.log(`--- STRING MANIPULATION 2 ---`);
+
+let str1 = "  Javascript er vanskelig   ";
+let str2 = " Det er vanskelig å bruke metoder ";
+let str3 = "   vanskelig        ";
+
+console.log(`DECLARE str str1:\n`, str1);
+console.log(`DECLARE str str2:\n`, str2);
+console.log(`DECLARE str str3:\n`, str3);
+
+const fixString = (str) => str.trim().replace("vanskelig", "gøy");
+
+console.log(`RUN fixString(str2):\n`, fixString(str2));
+console.log(`RUN fixString(str1):\n`, fixString(str1));
+console.log(`RUN fixString(str3):\n`, fixString(str3));
+
+/******************************************************************************
+6.Fullfør følgende steg for å manipulere "items"-arrayet. Hvert steg skal
+fullføres ved å bruke passende array-metoder.
+
+Steg 1: Fjern det første elementet ("Bok") fra arrayen ved hjelp av riktig metode.
+
+Steg 2: Finn og erstatt "Viskelær" med "Linjal" i arrayen.
+
+Steg 3: Bruk splice-metoden til å fjerne både "Penn" og "Notatbok", og legg til "Markeringspenn" i deres plass.
+
+Steg 4: Kombiner alle elementene i arrayen til en enkelt string ved å bruke " | " som separator.
+
+Ekstra utfordring: Lag et nytt array som kun inkluderer elementer som inneholder bokstaven "e".
+******************************************************************************/
+
+console.log(`--- ARRAY MANIPULATION 2 ---`);
+
+const items = ["Bok", "Penn", "Notatbok", "Viskelær", "Blyant", "Markør"];
+
+console.log(`DECLARE arr items: `, items);
+
+function arrManipulation(arr) {
+  arr.shift();
+  arr[arr.indexOf("Viskelær")] = "Linjal";
+  arr.splice(0, 2, "Markeringspenn");
+  return arr.join(" | ");
+}
+console.log(`RUN arrManipulation(items):\n`, arrManipulation(items));
+
+/******************************************************************************
+7.EKSTRA UTFORDRING #1:
+
+Dette er ikke obligatorisk, kun for de som vil ha en ekstra utfordring.
+
+Lag følgende funksjon:
+
+Funksjonen skal ta inn 2 parametere, en array og en string.
+
+Sjekk om arrayen inneholder stringen. Hvis den gjør det, fjern elementet
+fra arrayet og returner den oppdaterte arrayen.
+
+Hvis arrayet ikke inneholder stringen, legg stringen til på slutten
+av arrayet og returner det oppdaterte arrayet.
+
+Eksempel 1: (["Rød", "Grønn"], "Blå") --> ["Rød", "Grønn", "Blå"]
+Eksempel 2: (["Rød", "Grønn", "Blå"], "Grønn") --> ["Rød", "Blå"]
+Eksempel 3: (["En", "To", "Tre"], "Fire") --> ["En", "To", "Tre", "Fire"]
+Eksempel 4: (["En", "To", "Tre"], "To") --> ["En", "Tre"]
+******************************************************************************/
+
+console.log(`--- EXTRA CHALLENGE 1 ---`);
+
+let extraArr1 = ["Red", "Green"];
+let extraArr2 = ["Red", "Green", "Blue"];
+let extraArr3 = ["One", "Two", "Three"];
+let extraArr4 = ["One", "Two", "Three"];
+
+console.log(`DECLARE arr extraArr1:\n`, extraArr1);
+console.log(`DECLARE arr extraArr2:\n`, extraArr2);
+console.log(`DECLARE arr extraArr3:\n`, extraArr3);
+console.log(`DECLARE arr extraArr4:\n`, extraArr4);
+
+function extraArrManip(arr, str) {
+  // if (!str) {
+  //   return "ERROR No string found!";
+  // }
+  //
+  // I've had checks like this for pretty much every function in this assignment, but it's not really necessary
+
+  if (arr.includes(str)) {
+    arr.splice(arr.indexOf(str), 1);
+  } else {
+    arr.push(str);
+  }
+
+  return arr;
+}
+
+console.log(`RUN extraArrManip(extraArr1, "Blue"):\n`, extraArrManip(extraArr1, "Blue"));
+console.log(`RUN extraArrManip(extraArr2, "Green"):\n`, extraArrManip(extraArr2, "Green"));
+console.log(`RUN extraArrManip(extraArr3, "Four"):\n`, extraArrManip(extraArr3, "Four"));
+console.log(`RUN extraArrManip(extraArr4, "Two"):\n`, extraArrManip(extraArr4, "Two"));
+
+/******************************************************************************
+8.EKSTRA UTFORDRING #2:
+
+Dette er ikke obligatorisk, kun for de som vil ha en ekstra utfordring.
+
+Lag følgende funksjon:
+
+Funksjonen skal ta inn ett parameter.
+
+Hvis parameteret er en string:
+Returner stringen med "😎" lagt til i starten og slutten.
+
+Hvis parameteret er et tall:
+Doble verdien, konverter den til en string, og returner den med "😎" lagt til i
+starten og slutten.
+
+Hvis parameteret er en boolean:
+Returner "😎Ja😎" hvis parameteret er true, eller "😎Slapp av😎" hvis parameteret er false.
+
+Hvis parameteret er en annen datatype:
+Returner "😎Kun primitive verdier😎".
+
+******************************************************************************/
+
+console.log(`--- EXTRA CHALLENGE 2 ---`);
+
+let extraStr = "Heisann";
+let extraNum = 210;
+let extraBool = false;
+let extraArr = [123, "hei", 456];
+
+console.log(`DECLARE str extraStr:\n`, extraStr);
+console.log(`DECLARE num extraNum:\n`, extraNum);
+console.log(`DECLARE bool extraBool:\n`, extraBool);
+console.log(`DECLARE arr extraArr:\n`, extraArr);
+
+console.log(`RUN coolify(extraStr):\n`, coolify(extraStr));
+console.log(`RUN coolify(extraNum):\n`, coolify(extraNum));
+console.log(`RUN coolify(extraBool):\n`, coolify(extraBool));
+console.log(`RUN coolify(extraArr):\n`, coolify(extraArr));
+
+function coolify(input) {
+  const face = "😎";
+
+  if (typeof input === "string") {
+    return face + input + face;
+  } else if (typeof input === "number") {
+    return face + (input * 2).toString() + face;
+  } else if (typeof input === "boolean") {
+    return input ? face + "Yes" + face : face + "Relax..." + face;
+  } else {
+    return face + "Only primitive types..." + face;
+  }
+}
